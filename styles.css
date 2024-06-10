@@ -1,0 +1,112 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #71fb71;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+nav li {
+    margin-right: 20px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: #ccc;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+}
+
+#hero {
+    background-image: linear-gradient(to bottom, #71fb71, #71fb71);
+    background-size: 100% 300px;
+    background-position: 0% 100%;
+    padding: 2rem;
+    text-align: center;
+}
+
+#hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+#hero p {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+#hero button {
+    background-color: #71fb71;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+#hero button:hover {
+    background-color: #71fb71;
+}
+
+#about, #benefits, #get-started {
+    background-color: #f7f7f7;
+    padding: 2rem;
+    border: 1px solid #ddd;
+    margin-bottom: 2rem;
+}
+
+#about h2, #benefits h2, #get-started h2 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+#about p, #benefits p, #get-started p {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+#benefits ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#benefits li {
+    margin-bottom: 1rem;
+}
+
+#benefits li::before {
+    content: "\2022";
+    font-weight: bold;
+    margin-right: 0.5rem;
+}
+
+footer {
+    background-color: #71fb71;
+    color: #fff;
+    padding: 0.5rem;
+    text-align: center;
+    clear: both;
+}
