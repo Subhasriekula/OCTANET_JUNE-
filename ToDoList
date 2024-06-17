@@ -1,1 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 4px hsl(206, 72%, 51%);
+        }
+        .header {
+            background-color: hsl(198, 66%, 49%);
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        .task-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .task-list li {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+        .task-list li:last-child {
+            border-bottom: none;
+        }
+        .task-list li .task-name {
+            font-weight: bold;
+        }
+        .task-list li .task-priority {
+            font-size: 0.8em;
+            color: #666;
+        }
+        .task-list li .task-due-date {
+            font-size: 0.8em;
+            color: #666;
+        }
+        .task-list li .task-actions {
+            float: right;
+        }
+        .task-list li .task-actions button {
+            background-color: hsl(198, 66%, 49%);
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            font-size: 0.8em;
+            cursor: pointer;
+        }
+        .task-list li .task-actions button:hover {
+            background-color: hsl(198, 66%, 49%);
+        }
+        .task-entry {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .task-entry input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 1.2em;
+            border: 1px solid #ccc;
+        }
+        .task-entry button[type="submit"] {
+            background-color: hsl(198, 66%, 49%);
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+        .task-entry button[type="submit"]:hover {
+            background-color: hsl(198, 66%, 49%);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>To-Do List</h1>
+        </div>
+        <div class="task-list">
+            <ul id="task-list">
+                <!-- Tasks will be dynamically added here -->
+            </ul>
+        </div>
+        <div class="task-entry">
+            <input type="text" id="task-name" placeholder="Enter task name">
+            <input type="text" id="task-priority" placeholder="Enter task priority">
+            <input type="date" id="task-due-date" placeholder="Enter task due date">
+            <button type="submit" id="add-task">Add Task</button>
+        </div>
+    </div>
 
+    <script>
+        // Get the task list and task entry elements
+        const taskList = document.getElementById('task-list');
+        const taskEntry = document.querySelector('.task-entry');
+
+        // Function to add a new task
+        function addTask() {
+            // Get the task name, priority, and due date from the task entry fields
+            const taskName = document.getElementById('task-name').value;
+            const taskPriority = document.getElementById('task-priority').value;
+            const taskDueDate = document.getElementById('task-due-date').value;
+
+            // Create a new task list item
+            const taskListItem = document.createElement('li');
+            taskListItem.innerHTML = `
+                <span class="task-name">${taskName}</span>
+                <span class="task-priority">${taskPriority}</span>
+                <span class="task-due-date">${taskDueDate}</span>
+                <div class="task-actions">
+                    <button class="complete-task">Complete</button>
+                    <button class="delete-task">Delete</button>
+                </div>
+            `;
+
+            // Add the task list item to the task list
+            taskList.appendChild(taskListItem);
+
+            // Clear the task entry fields
+            document.getElementById('task-name').value = '';
+            document.getElementById('task-priority').value = '';
+            document.getElementById('task-due-date').value = '';
+        }
+
+        // Function to mark a task as complete
+        function completeTask(taskListItem) {
+            // Get the task name and due date from the task list item
+            const taskName = taskListItem.querySelector('.task-name').textContent;
+            const taskDueDate = taskListItem.querySelector('.task-due-date').textContent;
+
+            // Update the task list item to indicate the task is complete
+            taskListItem.querySelector('.task-name').textContent = `[Complete] ${taskName}`;
+            taskListItem.querySelector('.task-due-date').textContent = `Due: ${taskDueDate}`;
+        }
+
+        // Function to delete a task
+        function deleteTask(taskListItem) {
+            // Remove the task list item from the task list
+            taskList.removeChild(taskListItem);
+        }
+
+        // Add event listeners for adding, completing, and deleting tasks
+        document.getElementById('add-task').addEventListener('click', addTask);
+        taskList.addEventListener('click', (event) => {
+            if (event.target.classList.contains('complete-task')) {
+                const taskListItem = event.target.parentNode.parentNode;
+                completeTask(taskListItem);
+            } else if (event.target.classList.contains('delete-task')) {
+                const taskListItem = event.target.parentNode.parentNode;
+                deleteTask(taskListItem);
+            }
+        });
+    </script>
+</body>
+</html>
